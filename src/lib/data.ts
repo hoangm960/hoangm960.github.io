@@ -12,14 +12,14 @@ export const personalInfo = {
     bio: `Computer Science senior with hands-on experience building full-stack web applications using React, TypeScript, and Node.js. Focused on developing performant, user-centric systems with real-world impact, including event-scale scoring platforms and interactive canvas tools. Strong foundation in data structures, backend integration, and collaborative development.`,
     stats: {
         yearsExperience: 3,
-        projectsCompleted: 8,
+        projectsCompleted: 9,
         cupsOfCoffee: 500,
     },
 };
 
 export const projects = [
     {
-        id: 1,
+        id: 0,
         name: "Drawft",
         description:
             "Developed an infinite canvas drawing tool supporting real-time shape rendering and interaction. Implemented spatial indexing using rbush, improving rendering and lookup performance for large datasets. Designed scalable frontend architecture for handling complex drawing states and user interactions.",
@@ -28,6 +28,25 @@ export const projects = [
         githubUrl: "https://github.com/hoangm960/drawft",
         liveUrl: "https://hoangm960.github.io/drawft/",
         period: "June 2025 – Present",
+    },
+    {
+        id: 1,
+        name: "Smart Security System",
+        description:
+            "Engineered an edge AI gateway on a Raspberry Pi using Python and OpenCV (YuNet, SFace) to perform real-time face recognition and publish semantic intrusion events via MQTT. Developed actuator control firmware on an ESP32 using C++ and FreeRTOS, implementing mutexes to safely synchronize concurrent MQTT remote procedure calls (RPC) and physical hardware updates. Built asynchronous local web servers on both edge devices, exposing RESTful API endpoints to provide real-time system visualization and manual actuator overrides during cloud connectivity drops. Collaborated in a 3-person team to integrate decentralized IoT nodes with a centralized CoreIoT decision engine for a comprehensive, event-driven security architecture.",
+        image: "/projects/security.png",
+        techStack: [
+            "Python",
+            "C++",
+            "FreeRTOS",
+            "Raspberry Pi",
+            "ESP32",
+            "OpenCV",
+            "MQTT",
+        ],
+        githubUrl: "https://github.com/hoangm960/final-embeded/",
+        liveUrl: "",
+        period: "November 2025 – December 2025",
     },
     {
         id: 2,
