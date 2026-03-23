@@ -19,7 +19,7 @@ function SkillIcon({ skill }: { skill: Skill }) {
 
         return (
             <div
-                className={`w-11 h-11 rounded-xl ${fallback.bg} flex items-center justify-center ${fallback.text} text-sm font-bold flex-shrink-0`}
+                className={`w-11 h-11 rounded-xl ${fallback.bg} flex items-center justify-center ${fallback.text} text-sm font-bold shrink-0`}
                 title={skill.name}
             >
                 {initials}
@@ -29,7 +29,7 @@ function SkillIcon({ skill }: { skill: Skill }) {
 
     return (
         <div
-            className="w-11 h-11 flex items-center justify-center flex-shrink-0"
+            className="w-11 h-11 flex items-center justify-center shrink-0"
             title={skill.name}
         >
             <Icon icon={skill.icon} className="text-[28px]" />

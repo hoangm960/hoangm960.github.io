@@ -70,7 +70,7 @@ export function Projects() {
                         <motion.div
                             key={project.id}
                             variants={item}
-                            className="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-sky-500/50 dark:hover:border-sky-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-sky-500/10 hover:-translate-y-1"
+                            className="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-sky-500/50 dark:hover:border-sky-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-sky-500/10 hover:-translate-y-1 flex flex-col"
                         >
                             <div
                                 className={`relative aspect-video overflow-hidden ${project.image ? "" : getFallbackColor(project.id)}`}
@@ -97,30 +97,34 @@ export function Projects() {
                                 )}
                             </div>
 
-                            <div className="p-5">
-                                <div className="flex items-start justify-between gap-2 mb-1">
-                                    <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-sky-500 transition-colors leading-tight">
-                                        {project.name}
-                                    </h3>
+                            <div className="p-5 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <div className="flex items-start justify-between gap-2 mb-1">
+                                        <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-sky-500 transition-colors leading-tight">
+                                            {project.name}
+                                        </h3>
+                                    </div>
+                                    {project.period && (
+                                        <p className="text-xs text-slate-400 dark:text-slate-500 mb-3">
+                                            {project.period}
+                                        </p>
+                                    )}
                                 </div>
-                                {project.period && (
-                                    <p className="text-xs text-slate-400 dark:text-slate-500 mb-3">
-                                        {project.period}
-                                    </p>
-                                )}
-                                <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed mb-4 line-clamp-4">
-                                    {project.description}
-                                </p>
 
-                                <div className="flex flex-wrap gap-1.5 mb-4">
-                                    {project.techStack.map((tech) => (
-                                        <span
-                                            key={tech}
-                                            className="px-2.5 py-0.5 text-xs font-medium rounded-full bg-sky-50 dark:bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-200 dark:border-sky-500/20"
-                                        >
-                                            {tech}
-                                        </span>
-                                    ))}
+                                <div>
+                                    <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed mb-4 line-clamp-4">
+                                        {project.description}
+                                    </p>
+                                    <div className="flex flex-wrap gap-1.5 mb-4">
+                                        {project.techStack.map((tech) => (
+                                            <span
+                                                key={tech}
+                                                className="px-2.5 py-0.5 text-xs font-medium rounded-full bg-sky-50 dark:bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-200 dark:border-sky-500/20"
+                                            >
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
 
                                 <div className="flex items-center gap-3 pt-3 border-t border-slate-100 dark:border-slate-700">

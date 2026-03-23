@@ -9,8 +9,6 @@
         "lint": "eslint"
     },
     "dependencies": {
-        "@iconify-json/fa-brands": "^1.2.2",
-        "@iconify-json/fa-solid": "^1.2.2",
         "@iconify/react": "^6.0.2",
         "framer-motion": "^12.38.0",
         "lucide-react": "^0.577.0",

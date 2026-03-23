@@ -6,13 +6,10 @@ export const personalInfo = {
     location: "District 7, HCMC",
     email: "hnminh.work@gmail.com",
     phone: "0814553357",
-    website: "https://onflow.asia",
     availableForWork: true,
     avatar: "/avatar.jpg",
     aboutImage: "/avatar-alt.jpeg",
-    bio: `Computer Science senior with hands-on experience building full-stack web applications using React, TypeScript, and Node.js. Focused on developing performant, user-centric systems with real-world impact, including event-scale scoring platforms and interactive canvas tools. Strong foundation in data structures, backend integration, and collaborative development.
-
-Currently building at OnFlow — a web application from scratch, translating Figma wireframes into responsive components and integrating backend APIs, including an interactive 3D model viewer.`,
+    bio: `Computer Science senior with hands-on experience building full-stack web applications using React, TypeScript, and Node.js. Focused on developing performant, user-centric systems with real-world impact, including event-scale scoring platforms and interactive canvas tools. Strong foundation in data structures, backend integration, and collaborative development.`,
     stats: {
         yearsExperience: 3,
         projectsCompleted: 8,
@@ -29,7 +26,7 @@ export const projects = [
         image: "",
         techStack: ["React", "TypeScript", "Vite", "Rough.js", "rbush"],
         githubUrl: "https://github.com/hoangm960/drawft",
-        liveUrl: "https://github.com/hoangm960/drawft",
+        liveUrl: "https://hoangm960.github.io/drawft/",
         period: "June 2025 – Present",
     },
     {
@@ -74,7 +71,7 @@ export const projects = [
         image: "/projects/trivia_scoring.jpg",
         techStack: ["React", "Express.js", "Firebase"],
         githubUrl: "https://github.com/hoangm960/trivia_scoring",
-        liveUrl: "",
+        liveUrl: "https://trivia-scoring.web.app",
         period: "February 2024 – April 2025",
     },
     {
@@ -162,7 +159,7 @@ export const skillCategories: SkillCategory[] = [
         skills: [
             { name: "MySQL", icon: "logos:mysql-icon" },
             { name: "MongoDB", icon: "logos:mongodb-icon" },
-            { name: "SQLite", icon: "logos:sqlite" },
+            { name: "SQLite", icon: "devicon:sqlite" },
             { name: "Firebase", icon: "logos:firebase-icon" },
             { name: "Postgresql", icon: "logos:postgresql" },
         ],
