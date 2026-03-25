@@ -1,11 +1,18 @@
 "use client";
 
-import { personalInfo } from "@/lib/data";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { urlFor } from "@/lib/sanity";
 
-export function HeroContent() {
+type HeroContentProps = {
+  personalInfo: any;
+};
+
+export function HeroContent({ personalInfo }: HeroContentProps) {
+  const avatarUrl = personalInfo?.avatar 
+    ? (personalInfo.avatar._type === 'image' ? urlFor(personalInfo.avatar).url() : personalInfo.avatar)
+    : "";
     return (
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-32 flex flex-col items-center text-center">
             <motion.div
@@ -16,8 +23,8 @@ export function HeroContent() {
             >
                 <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-sky-500/30 shadow-2xl bg-slate-200 dark:bg-slate-700">
                     <Image
-                        src={personalInfo.avatar}
-                        alt={personalInfo.name}
+                        src={avatarUrl || "/avatar.jpg"}
+                        alt={personalInfo?.name || "Avatar"}
                         fill
                         className="object-cover"
                         loading="eager"

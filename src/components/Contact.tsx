@@ -7,10 +7,16 @@ import {
     MapPin,
 } from "lucide-react";
 import { SocialIcon } from "@/components/SocialIcon";
-import { personalInfo, socialLinks } from "@/lib/data";
 import { useState } from "react";
 
-export function Contact() {
+type ContactProps = {
+  personalInfo: any;
+  socialLinks: any;
+};
+
+export function Contact({ personalInfo, socialLinks }: ContactProps) {
+  const email = personalInfo?.email || "";
+  const location = personalInfo?.location || "";
     const [form, setForm] = useState({ name: "", email: "", message: "" });
     const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
         "idle",
@@ -26,10 +32,10 @@ export function Contact() {
     };
 
     const socials = [
-        { icon: "fa-brands:github", href: socialLinks.github, label: "GitHub" },
-        { icon: "fa-brands:linkedin", href: socialLinks.linkedin, label: "LinkedIn" },
-        { icon: "fa-brands:facebook", href: socialLinks.facebook, label: "Facebook" },
-        { icon: "fa-solid:envelope", href: `mailto:${personalInfo.email}`, label: "Email" },
+        { icon: "fa-brands:github", href: socialLinks?.github, label: "GitHub" },
+        { icon: "fa-brands:linkedin", href: socialLinks?.linkedin, label: "LinkedIn" },
+        { icon: "fa-brands:facebook", href: socialLinks?.facebook, label: "Facebook" },
+        { icon: "fa-solid:envelope", href: `mailto:${email}`, label: "Email" },
     ];
 
     return (
@@ -72,7 +78,7 @@ export function Contact() {
                                     Email
                                 </h3>
                                 <p className="text-slate-600 dark:text-slate-400 text-sm">
-                                    {personalInfo.email}
+                                    {email}
                                 </p>
                             </div>
                         </div>
@@ -86,7 +92,7 @@ export function Contact() {
                                     Location
                                 </h3>
                                 <p className="text-slate-600 dark:text-slate-400 text-sm">
-                                    {personalInfo.location}
+                                    {location}
                                 </p>
                             </div>
                         </div>

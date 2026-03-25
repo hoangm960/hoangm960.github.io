@@ -3,9 +3,19 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { MapPin } from "lucide-react";
-import { personalInfo } from "@/lib/data";
+import { urlFor } from "@/lib/sanity";
 
-export function About() {
+type AboutProps = {
+  personalInfo: any;
+};
+
+export function About({ personalInfo }: AboutProps) {
+  const aboutImageUrl = personalInfo?.aboutImage 
+    ? (personalInfo.aboutImage._type === 'image' ? urlFor(personalInfo.aboutImage).url() : personalInfo.aboutImage)
+    : "";
+  const bio = personalInfo?.bio || "";
+  const location = personalInfo?.location || "";
+  const stats = personalInfo?.stats || { yearsExperience: 0, projectsCompleted: 0, cupsOfCoffee: 0 };
   return (
     <section id="about" className="py-24 bg-white dark:bg-slate-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -31,8 +41,8 @@ export function About() {
           >
             <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-sky-100 to-blue-100 dark:from-slate-800 dark:to-slate-700 aspect-square max-w-md mx-auto">
               <Image
-                src={personalInfo.aboutImage}
-                alt={personalInfo.name}
+                src={aboutImageUrl || "/avatar-alt.jpg"}
+                alt={personalInfo?.name || "About"}
                 fill
                 className="object-cover rounded-2xl"
               />
@@ -49,11 +59,11 @@ export function About() {
           >
             <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm mb-4">
               <MapPin size={16} className="text-sky-500" />
-              <span>{personalInfo.location}</span>
+              <span>{location}</span>
             </div>
 
             <div className="prose prose-slate dark:prose-invert max-w-none">
-              {personalInfo.bio.split("\n\n").map((paragraph, i) => (
+              {bio.split("\n\n").map((paragraph: string, i: number) => (
                 <p key={i} className="text-slate-600 dark:text-slate-300 leading-relaxed text-base">
                   {paragraph}
                 </p>
@@ -62,9 +72,9 @@ export function About() {
 
             <div className="grid grid-cols-3 gap-4 pt-6">
               {[
-                { label: "Years Exp.", value: personalInfo.stats.yearsExperience },
-                { label: "Projects", value: personalInfo.stats.projectsCompleted },
-                { label: "Coffees", value: `${personalInfo.stats.cupsOfCoffee}+` },
+                { label: "Years Exp.", value: stats.yearsExperience },
+                { label: "Projects", value: stats.projectsCompleted },
+                { label: "Coffees", value: `${stats.cupsOfCoffee}+` },
               ].map((stat) => (
                 <div
                   key={stat.label}

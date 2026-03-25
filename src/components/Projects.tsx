@@ -4,7 +4,24 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import { SocialIcon } from "@/components/SocialIcon";
-import { projects } from "@/lib/data";
+import { urlFor } from "@/lib/sanity";
+
+type Project = {
+  _id: string;
+  name: string;
+  description: string;
+  image: any;
+  techStack: string[];
+  githubUrl: string;
+  liveUrl: string;
+  period: string;
+};
+
+const getProjectId = (project: Project) => project._id || project.name;
+
+type ProjectsProps = {
+  projects: Project[];
+};
 
 const fallbackColors = [
     "bg-sky-200 dark:bg-sky-800",
@@ -17,8 +34,8 @@ const fallbackColors = [
     "bg-fuchsia-200 dark:bg-fuchsia-800",
 ];
 
-const getFallbackColor = (id: number) =>
-    fallbackColors[id % fallbackColors.length];
+const getFallbackColor = (id: string) =>
+    fallbackColors[(id?.charCodeAt(0) || 0) % fallbackColors.length];
 
 const container = {
     hidden: {},
@@ -34,7 +51,7 @@ const item = {
     show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 };
 
-export function Projects() {
+export function Projects({ projects }: ProjectsProps) {
     return (
         <section
             id="projects"
@@ -68,17 +85,17 @@ export function Projects() {
                 >
                     {projects.map((project) => (
                         <motion.div
-                            key={project.id}
+                            key={project._id}
                             variants={item}
                             className="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-sky-500/50 dark:hover:border-sky-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-sky-500/10 hover:-translate-y-1 flex flex-col"
                         >
                             <div
-                                className={`relative aspect-video overflow-hidden ${project.image ? "" : getFallbackColor(project.id)}`}
+                                className={`relative aspect-video overflow-hidden ${project.image ? "" : getFallbackColor(project._id)}`}
                             >
                                 {project.image ? (
                                     <>
                                         <Image
-                                            src={project.image}
+                                            src={project.image._type === 'image' ? urlFor(project.image).url() : project.image}
                                             alt={project.name}
                                             fill
                                             className="object-cover group-hover:scale-105 transition-transform duration-500"

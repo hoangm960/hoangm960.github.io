@@ -2,7 +2,22 @@
 
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
-import { skillCategories, skillFallbacks, type Skill } from "@/lib/data";
+import { skillFallbacks } from "@/lib/data";
+
+type Skill = {
+  name: string;
+  icon: string | null;
+};
+
+type SkillCategory = {
+  _id: string;
+  name: string;
+  skills: Skill[];
+};
+
+type SkillsProps = {
+  skillCategories: SkillCategory[];
+};
 
 function SkillIcon({ skill }: { skill: Skill }) {
     if (!skill.icon) {
@@ -56,7 +71,7 @@ function SkillCard({ skill, index }: { skill: Skill; index: number }) {
     );
 }
 
-export function Skills() {
+export function Skills({ skillCategories }: SkillsProps) {
     return (
         <section id="skills" className="py-24 bg-white dark:bg-slate-900">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -79,7 +94,7 @@ export function Skills() {
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                     {skillCategories.map((category, catIndex) => (
                         <motion.div
-                            key={category.id}
+                            key={category._id}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-60px" }}

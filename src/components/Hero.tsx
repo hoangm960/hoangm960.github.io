@@ -6,7 +6,12 @@ import { Environment } from "@react-three/drei";
 import { Laptop3D } from "./Laptop3D";
 import { HeroContent } from "./HeroContent";
 
-export function Hero() {
+type HeroProps = {
+  personalInfo: any;
+  socialLinks: any;
+};
+
+export function Hero({ personalInfo, socialLinks }: HeroProps) {
     const [scrollProgress, setScrollProgress] = useState(0);
 
     useEffect(() => {
@@ -47,7 +52,7 @@ export function Hero() {
                         scrollProgress > 0.6 ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
                     }`}
                 >
-                    <HeroContent />
+                    <HeroContent personalInfo={personalInfo} />
                 </div>
             </div>
         </section>
