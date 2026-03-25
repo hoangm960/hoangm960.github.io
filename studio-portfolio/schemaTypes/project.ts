@@ -38,8 +38,14 @@ export default defineType({
       type: 'url',
     }),
     defineField({
-      name: 'period',
-      title: 'Period',
+      name: 'startDate',
+      title: 'Start Date',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'endDate',
+      title: 'End Date',
       type: 'string',
     }),
   ],
