@@ -2,23 +2,35 @@ import { defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'socialLink',
-  title: 'Social Links',
+  title: 'Social Link',
   type: 'document',
   fields: [
     defineField({
-      name: 'github',
-      title: 'GitHub',
+      name: 'platform',
+      title: 'Platform',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'GitHub', value: 'github' },
+          { title: 'LinkedIn', value: 'linkedin' },
+          { title: 'Facebook', value: 'facebook' },
+          { title: 'Twitter', value: 'twitter' },
+          { title: 'Instagram', value: 'instagram' },
+          { title: 'YouTube', value: 'youtube' },
+          { title: 'Email', value: 'email' },
+        ],
+      },
+    }),
+    defineField({
+      name: 'url',
+      title: 'URL',
       type: 'url',
     }),
     defineField({
-      name: 'linkedin',
-      title: 'LinkedIn',
-      type: 'url',
-    }),
-    defineField({
-      name: 'facebook',
-      title: 'Facebook',
-      type: 'url',
+      name: 'enabled',
+      title: 'Enabled',
+      type: 'boolean',
+      initialValue: true,
     }),
   ],
 })
