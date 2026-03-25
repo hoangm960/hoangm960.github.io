@@ -4,6 +4,7 @@ import { useRef, useMemo } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
+import { asset } from "@/lib/assets";
 
 interface Laptop3DProps {
     scrollProgress: number;
@@ -12,8 +13,7 @@ interface Laptop3DProps {
 export function Laptop3D({ scrollProgress }: Laptop3DProps) {
     const { height } = useThree((state) => state.viewport);
 
-    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-    const gltf = useGLTF(`${basePath}/asus_rog_strix_scar_17_2023_g733_gaming_laptop.glb`);
+    const gltf = useGLTF(asset("/asus_rog_strix_scar_17_2023_g733_gaming_laptop.glb"));
     const nodes = gltf.nodes as unknown as Record<string, THREE.Mesh>;
     const materials = gltf.materials as unknown as Record<
         string,
@@ -470,4 +470,4 @@ export function Laptop3D({ scrollProgress }: Laptop3DProps) {
     );
 }
 
-useGLTF.preload(`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/asus_rog_strix_scar_17_2023_g733_gaming_laptop.glb`);
+useGLTF.preload(asset("/asus_rog_strix_scar_17_2023_g733_gaming_laptop.glb"));
