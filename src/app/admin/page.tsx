@@ -11,6 +11,8 @@ import {
     createSkillCategory,
     deleteSkillCategory,
     updateSocialLink,
+    createSocialLink,
+    deleteSocialLink,
 } from "@/lib/db";
 import { AuthScreen } from "@/components/admin/AuthScreen";
 import { AdminHeader } from "@/components/admin/AdminHeader";
@@ -84,7 +86,7 @@ export default function AdminPage() {
                             await deleteProject(id);
                             reloadData();
                         }}
-                        onReorder={reloadData}
+                        onReorder={() => {}}
                     />
                 )}
 
@@ -103,7 +105,7 @@ export default function AdminPage() {
                             await deleteSkillCategory(id);
                             reloadData();
                         }}
-                        onReorder={reloadData}
+                        onReorder={() => {}}
                     />
                 )}
 
@@ -114,6 +116,15 @@ export default function AdminPage() {
                             await updateSocialLink(platform, data);
                             reloadData();
                         }}
+                        onCreate={async (data) => {
+                            await createSocialLink(data);
+                            reloadData();
+                        }}
+                        onDelete={async (platform) => {
+                            await deleteSocialLink(platform);
+                            reloadData();
+                        }}
+                        onReorder={() => {}}
                     />
                 )}
             </div>
