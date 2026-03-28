@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Project, ProjectInput } from "@/lib/db";
+import Image from "next/image";
+import { Project, ProjectInput, uploadProjectImage } from "@/lib/db";
 import { SortableList } from "./SortableList";
 import { EditableCard } from "./EditableCard";
 import { FormInput } from "./FormInput";
@@ -21,11 +22,17 @@ export function ProjectsSection({
 }: ProjectsSectionProps) {
     const [editingId, setEditingId] = useState<string | null>(null);
     const [form, setForm] = useState<Partial<Project>>({});
+    const [imageFile, setImageFile] = useState<File | null>(null);
 
     async function handleSave(id: string) {
-        await onUpdate(id, form);
+        const updatedForm = { ...form };
+        if (imageFile) {
+            updatedForm.image = await uploadProjectImage(id, imageFile);
+        }
+        await onUpdate(id, updatedForm);
         setEditingId(null);
         setForm({});
+        setImageFile(null);
     }
 
     async function handleAdd() {
@@ -75,6 +82,7 @@ export function ProjectsSection({
                         onCancel={() => {
                             setEditingId(null);
                             setForm({});
+                            setImageFile(null);
                         }}
                         viewContent={
                             <>
@@ -89,6 +97,26 @@ export function ProjectsSection({
                         }
                         editContent={
                             <>
+                                <div>
+                                    <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">
+                                        Project Image
+                                    </label>
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={(e) => setImageFile(e.target.files?.[0] || null)}
+                                        className="block w-full"
+                                    />
+                                    {(form.image || imageFile) && (
+                                        <Image
+                                            src={imageFile ? URL.createObjectURL(imageFile) : form.image || ""}
+                                            alt="Project"
+                                            width={120}
+                                            height={80}
+                                            className="mt-2 object-cover rounded"
+                                        />
+                                    )}
+                                </div>
                                 <FormInput
                                     placeholder="Name"
                                     value={form.name || ""}
