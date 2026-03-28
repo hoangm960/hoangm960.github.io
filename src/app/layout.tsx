@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { personalInfo } from "@/lib/data";
+import { getPersonalInfo } from "@/lib/db";
+
+export const revalidate = 86400;
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -13,16 +15,34 @@ const geistMono = Geist_Mono({
     subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-    title: `${personalInfo.name} | Portfolio`,
-    description: `Portfolio of ${personalInfo.name} — ${personalInfo.role}. ${personalInfo.tagline}`,
-};
+export async function generateMetadata(): Promise<Metadata> {
+    try {
+        const personalInfo = await getPersonalInfo();
+        return {
+            title: `${personalInfo.name} | Portfolio`,
+            description: `Portfolio of ${personalInfo.name} — ${personalInfo.role}. ${personalInfo.tagline}`,
+        };
+    } catch {
+        return {
+            title: "Portfolio",
+            description: "My portfolio website",
+        };
+    }
+}
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    let name = "";
+    try {
+        const personalInfo = await getPersonalInfo();
+        name = personalInfo.name;
+    } catch {
+        name = "Developer";
+    }
+
     return (
         <html lang="en" className="dark">
             <body
@@ -34,7 +54,7 @@ export default function RootLayout({
                         <p className="text-sm text-slate-500 dark:text-slate-400">
                             Designed &amp; Built by{" "}
                             <span className="text-sky-500 font-medium">
-                                {personalInfo.name}
+                                {name}
                             </span>
                             {" · "}
                             {new Date().getFullYear()}

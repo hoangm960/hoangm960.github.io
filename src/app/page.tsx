@@ -5,6 +5,8 @@ import { Skills } from "@/components/Skills";
 import { Contact } from "@/components/Contact";
 import { getPersonalInfo, getProjects, getSkillCategories, getSocialLinks } from "@/lib/db";
 
+export const revalidate = 86400;
+
 export default async function Home() {
   const [personalInfo, projects, skillCategories, socialLinks] = await Promise.all([
     getPersonalInfo(),
