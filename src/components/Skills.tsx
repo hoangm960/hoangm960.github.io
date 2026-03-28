@@ -3,32 +3,11 @@
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
 
-const skillFallbacks: Record<string, { bg: string; text: string }> = {
-    TailwindCSS: {
-        bg: "bg-sky-100 dark:bg-sky-500/20",
-        text: "text-sky-600 dark:text-sky-400",
-    },
-    Flask: {
-        bg: "bg-neutral-100 dark:bg-neutral-500/20",
-        text: "text-neutral-600 dark:text-neutral-300",
-    },
-    ESP32: {
-        bg: "bg-emerald-100 dark:bg-emerald-500/20",
-        text: "text-emerald-600 dark:text-emerald-400",
-    },
-    FreeRTOS: {
-        bg: "bg-red-100 dark:bg-red-500/20",
-        text: "text-red-600 dark:text-red-400",
-    },
-    "Beautiful Soup": {
-        bg: "bg-yellow-100 dark:bg-yellow-500/20",
-        text: "text-yellow-700 dark:text-yellow-400",
-    },
-};
-
 type Skill = {
   name: string;
   icon: string | null;
+  bgColor: string | null;
+  textColor: string | null;
 };
 
 type SkillCategory = {
@@ -42,34 +21,31 @@ type SkillsProps = {
 };
 
 function SkillIcon({ skill }: { skill: Skill }) {
-    if (!skill.icon) {
-        const fallback = skillFallbacks[skill.name] || {
-            bg: "bg-slate-100 dark:bg-slate-700",
-            text: "text-slate-600 dark:text-slate-300",
-        };
-        const initials = skill.name
-            .split(/[\s\/\-]/)
-            .map((w) => w[0])
-            .join("")
-            .slice(0, 2)
-            .toUpperCase();
-
+    if (skill.icon) {
         return (
             <div
-                className={`w-11 h-11 rounded-xl ${fallback.bg} flex items-center justify-center ${fallback.text} text-sm font-bold shrink-0`}
+                className="w-11 h-11 flex items-center justify-center shrink-0"
                 title={skill.name}
             >
-                {initials}
+                <Icon icon={skill.icon} className="text-[28px]" />
             </div>
         );
     }
 
+    const initials = skill.name
+        .split(/[\s\/\-]/)
+        .map((w) => w[0])
+        .join("")
+        .slice(0, 2)
+        .toUpperCase();
+
     return (
         <div
-            className="w-11 h-11 flex items-center justify-center shrink-0"
+            className="w-11 h-11 rounded-xl flex items-center justify-center text-sm font-bold shrink-0"
+            style={{ backgroundColor: skill.bgColor || "#64748b", color: skill.textColor || "#ffffff" }}
             title={skill.name}
         >
-            <Icon icon={skill.icon} className="text-[28px]" />
+            {initials}
         </div>
     );
 }
