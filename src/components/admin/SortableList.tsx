@@ -24,8 +24,9 @@ interface SortableItemType {
 interface SortableListProps<T extends SortableItemType> {
     items: T[];
     onReorder: (items: T[]) => void;
-    onUpdateOrder: (id: string, order: number) => Promise<void>;
+    onUpdateOrder?: (id: string, order: number) => Promise<void>;
     children: (item: T) => ReactNode;
+    saveOnReorder?: boolean;
 }
 
 export function SortableList<T extends SortableItemType>({
@@ -33,6 +34,7 @@ export function SortableList<T extends SortableItemType>({
     onReorder,
     onUpdateOrder,
     children,
+    saveOnReorder = true,
 }: SortableListProps<T>) {
     const sensors = useSensors(
         useSensor(PointerSensor),
@@ -53,7 +55,9 @@ export function SortableList<T extends SortableItemType>({
                 }),
             );
             onReorder(newItems);
-            newItems.forEach((item) => onUpdateOrder(item._id, item.order));
+            if (saveOnReorder && onUpdateOrder) {
+                newItems.forEach((item) => onUpdateOrder(item._id, item.order));
+            }
         }
     }
 
