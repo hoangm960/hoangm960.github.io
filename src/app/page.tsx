@@ -3,18 +3,9 @@ import { About } from "@/components/About";
 import { Projects } from "@/components/Projects";
 import { Skills } from "@/components/Skills";
 import { Contact } from "@/components/Contact";
-import { getPersonalInfo, getProjects, getSkillCategories, getSocialLinks } from "@/lib/db";
+import { personalInfo, projects, skillCategories, socialLinks } from "@/lib/data";
 
-export const revalidate = 86400;
-
-export default async function Home() {
-  const [personalInfo, projects, skillCategories, socialLinks] = await Promise.all([
-    getPersonalInfo(),
-    getProjects(),
-    getSkillCategories(),
-    getSocialLinks(),
-  ]);
-
+export default function Home() {
   return (
     <>
       <Hero personalInfo={personalInfo} />

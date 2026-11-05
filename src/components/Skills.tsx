@@ -6,8 +6,8 @@ import { Icon } from "@iconify/react";
 type Skill = {
   name: string;
   icon: string | null;
-  bgColor: string | null;
-  textColor: string | null;
+  bgColor?: string | null;
+  textColor?: string | null;
 };
 
 type SkillCategory = {
@@ -89,7 +89,7 @@ export function Skills({ skillCategories }: SkillsProps) {
                     </p>
                 </motion.div>
 
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                     {skillCategories.map((category, catIndex) => (
                         <motion.div
                             key={category._id}

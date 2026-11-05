@@ -137,7 +137,7 @@ export function Projects({ projects }: ProjectsProps) {
                                 </div>
 
                                 <div>
-                                    <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed mb-4 line-clamp-4">
+                                    <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed mb-4">
                                         {project.description}
                                     </p>
                                     <div className="flex flex-wrap gap-1.5 mb-4">
