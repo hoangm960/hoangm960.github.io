@@ -60,7 +60,7 @@ export const personalInfo: PersonalInfo = {
     phone: "0814553357",
     avatar: "/avatar.jpg",
     aboutImage: "/avatar-alt.jpg",
-    bio: "Computer Science graduate from Fulbright University Vietnam (3.45 GPA) with hands-on experience building full-stack web applications, real-time systems, and AI agent workflows using React, Next.js, TypeScript, Node.js, and Python. Experienced in designing REST and WebSocket APIs, relational and NoSQL data models, spatial-indexed canvas interfaces, and automated test suites with Jest, Vitest, Playwright, and Pytest.",
+    bio: "Computer Science graduate from Fulbright University Vietnam with hands-on experience building full-stack web applications, real-time systems, and AI agent workflows using React, Next.js, TypeScript, Node.js, and Python. Experienced in designing REST and WebSocket APIs, relational and NoSQL data models, spatial-indexed canvas interfaces, and automated test suites with Jest, Vitest, Playwright, and Pytest.",
     stats: {
         yearsExperience: 6,
         projectsCompleted: 12,
