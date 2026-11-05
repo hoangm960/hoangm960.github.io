@@ -26,14 +26,14 @@ export default function RootLayout({
     return (
         <html lang="en" className="dark">
             <body
-                className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-white antialiased transition-colors duration-300`}
+                className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-[#090814] text-zinc-200 antialiased selection:bg-indigo-400 selection:text-slate-950`}
             >
                 <main className="flex-1">{children}</main>
-                <footer className="py-8 border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
-                    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                        <p className="text-sm text-slate-500 dark:text-slate-400">
+                <footer className="py-8 border-t border-indigo-950/80 bg-[#090814]">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 text-center">
+                        <p className="text-sm text-zinc-400">
                             Designed &amp; Built by{" "}
-                            <span className="text-sky-500 font-medium">
+                            <span className="text-indigo-400 font-medium">
                                 {personalInfo.name}
                             </span>
                             {" · "}
